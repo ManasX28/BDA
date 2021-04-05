@@ -1,0 +1,56 @@
+> use student
+switched to db student
+2)
+> db.student.insert({rollNo: '10', age: 21, name: 'Manas', contact: 9005595589, emailId: 'manasgoeljmd@gmail.com'})
+WriteResult({ "nInserted" : 1 })
+> db.student.insert({rollNo: '11', age: 22, name: 'Mr. X', contact: 9876543210, emailId: 'mrx@gmail.com'})
+WriteResult({ "nInserted" : 1 })
+3)
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("606adf0df70a020d4c9e3e3a"),
+        "rollNo" : "10",
+        "age" : 21,
+        "name" : "Manas",
+        "contact" : 9005595589,
+        "emailId" : "manasgoeljmd@gmail.com"
+}
+{
+        "_id" : ObjectId("606adf4ef70a020d4c9e3e3b"),
+        "rollNo" : "11",
+        "age" : 22,
+        "name" : "Mr. X",
+        "contact" : 9876543210,
+        "emailId" : "mrx@gmail.com"
+}
+4)
+> db.student.update({rollNo: '10'},{$set:{emailId:"new@gmail.com"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+>  db.student.update({rollNo: '11'},{$set:{name:"new Name"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+5)
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("606adf0df70a020d4c9e3e3a"),
+        "rollNo" : "10",
+        "age" : 21,
+        "name" : "Manas",
+        "contact" : 9005595589,
+        "emailId" : "new@gmail.com"
+}
+{
+        "_id" : ObjectId("606adf4ef70a020d4c9e3e3b"),
+        "rollNo" : "11",
+        "age" : 22,
+        "name" : "new Name",
+        "contact" : 9876543210,
+        "emailId" : "mrx@gmail.com"
+}
+
+6)
+C:\Program Files\MongoDB\Server\4.0\bin>mongoexport --db=student --collection=student --type=csv --fields=rollno,name,age,contact,email --out=D:\BDA\student.csv
+2021-04-05T14:25:05.138+0530    connected to: localhost
+2021-04-05T14:25:05.178+0530    exported 2 records
+
+7)
+>db.dropDatabase()
